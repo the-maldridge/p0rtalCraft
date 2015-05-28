@@ -1,5 +1,5 @@
 groups:
-  md_5:
+  maldridge:
   - admin
 disabled_commands:
 - disabledcommandhere
@@ -23,7 +23,7 @@ listeners:
   tab_list: GLOBAL_PING
   default_server: lobby
   forced_hosts:
-    pvp.md-5.net: pvp
+    minecraft.collegiumv.org: lobby
   tab_size: 60
   force_default_server: false
   motd: 'The CV Voxel based clubhouse'
@@ -36,13 +36,13 @@ servers:
     address: localhost:25570
     restricted: false
     motd: 'Lobby Server'
-  creative:
+  survival:
     address: localhost:25571
     restricted: false
-    motd: 'Be Creative'
-  survival:
+    motd: 'Survival, Can you do it'
+  creative:
     address: localhost:25572
     restricted: false
-    motd: 'Survival, Can you do it'
+    motd: 'Be Creative'
 ip_forward: false
 online_mode: true
