@@ -55,6 +55,10 @@
   template: src=server.properties.j2 dest=/srv/minecraft/backend/{{ item.value.instanceDir }}/server.properties owner=minecraft group=minecraft mode=0644
   with_dict: servers
 
+- name: Agree to EULA
+  copy: src=eula.txt dest=/srv/minecraft/backend/{{ item.value.instanceDir }}/eula.txt owner=minecraft group=minecraft mode=0644
+  with_dict: servers
+
 - name: Create start scripts
   template: src=start.sh.j2 dest=/srv/minecraft/backend/{{ item.value.instanceDir }}/start.sh owner=minecraft group=minecraft mode=0755
   with_dict: servers
