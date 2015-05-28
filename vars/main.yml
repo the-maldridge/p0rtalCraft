@@ -32,7 +32,7 @@ servers:
     levelName: world
     instanceQueryEnabled: false
     instancePort: 25571
-    instanceSeed: drharpham
+    instanceSeed: 5116315820322785826
     instanceGamemode: 1
     instanceMOTD: Survival
     spawnNPCs: true
@@ -43,15 +43,15 @@ servers:
     xrayEnable: true
     minMemory: 128M
     maxMemory: 1G
-    instanceDir: creative
+    instanceDir: survival
   creative:
     allowEnd: true
     allowNether: true
     levelName: world
     instanceQueryEnabled: false
     instancePort: 25572
-    instanceSeed: 5116315820322785826
-    instanceGamemode: 0
+    instanceSeed: drharpham
+    instanceGamemode: 1
     instanceMOTD: Creative
     spawnNPCs: false
     spawnAnimals: false
@@ -61,4 +61,4 @@ servers:
     xrayEnable: false
     minMemory: 128M
     maxMemory: 1G
-    instanceDir: survival
+    instanceDir: creative
