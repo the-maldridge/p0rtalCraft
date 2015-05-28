@@ -66,16 +66,20 @@
 - name: BungeeCord start script
   copy: src=bungeeStart.sh dest=/srv/minecraft/bungeeCord/start.sh owner=minecraft group=minecraft mode=0755
 
-- name: Retrieve permissions jars
+- name: Get PermissionsEx
   get_url: url={{ PermissionsEx_url }} dest=/srv/minecraft/bin/permissionsex.jar owner=minecraft group=minecraft mode=0644
+
+- name: Install PermissionsEx
+  file: src=/srv/minecraft/bin/permissionsex.jar dest=/srv/minecraft/backend/{{ item.value.instanceDir }}/plugins/permissionsex.jar state=link
+  with_dict: servers
+
+- name: Get ModifyWorld
   get_url: url={{ ModifyWorld_url }} dest=/srv/minecraft/bin/modifyworld.jar owner=minecraft group=minecraft mode=0644
+
+- name: Install ModifyWorld
+  file: src=/srv/minecraft/bin/modifyworld.jar dest=/srv/minecraft/backend/{{ item.value.instanceDir }}/plugins/modifyworld.jar state=link
+  with_dict: servers
 
 - name: Create server plugin folders
   file: path=/srv/minecraft/backend/{{ item.value.instanceDir }}/plugins state=directory owner=minecraft group=minecraft mode=0755
-  with_dict: servers
-
-- name: Enable plugins
-  file: src=/srv/minecraft/bin/permissionsex.jar dest=/srv/minecraft/backend/{{ item.value.instanceDir }}/plugins/permissionsex.jar state=link
-  with_dict: servers
-  file: src=/srv/minecraft/bin/modifyworld.jar dest=/srv/minecraft/backend/{{ item.value.instanceDir }}/plugins/modifyworld.jar state=link
   with_dict: servers
