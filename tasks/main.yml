@@ -21,6 +21,11 @@
 - name: Create BungeeCord root
   file: path=/srv/minecraft/bungeeCord/ state=directory owner=minecraft group=minecraft mode=0755
 
+- name: Create the minecraft server folders
+  file: path=/srv/minecraft state=directory owner=minecraft group=minecraft mode=0755
+  file: path=/srv/minecraft/backend/{{ item.value.instanceDir  }} state=directory owner=minecraft group=minecraft mode=0755
+  with_dict: servers
+
 - name: Create bin folder for minecraft assets
   file: path=/srv/minecraft/bin/ state=directory owner=minecraft group=minecraft mode=0755
 
@@ -28,29 +33,32 @@
   get_url: url=https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar dest=/srv/minecraft/build/BuildTools.jar owner=minecraft group=minecraft mode=0644
 
 - name: Attempt to build the Spigot artifacts
-  command: java -jar BuildTools.jar --rev {{ spigot_version }} chdir=/srv/minecraft/build
+  command: java -jar BuildTools.jar --rev {{ spigot_version }} chdir=/srv/minecraft/build creates=/srv/minecraft/build/spigot-{{ spigot_version }}.jar
 
-# - name: Link spigot binaries
-#   file: src=/srv/minecraft/bin/spigot.jar dest=/srv/minecraft/backend/{{ item.value.instanceDir  }}/spigot.jar state=link owner=minecraft group=minecraft
-#   with_dict: servers
+- name: Symlink the spigot binary to bin
+  file: src=/srv/minecraft/build/spigot-{{ spigot_version }}.jar dest=/srv/minecraft/bin/spigot.jar state=link owner=minecraft group=minecraft
 
-# - name: Link BungeeCord binary
-#   file: src=/srv/minecraft/bin/BungeeCord.jar dest=/srv/minecraft/bungeeCord/bungeeCord.jar state=link owner=minecraft group=minecraft
+- name: Link spigot binaries
+  file: src=/srv/minecraft/bin/spigot.jar dest=/srv/minecraft/backend/{{ item.value.instanceDir  }}/spigot.jar state=link owner=minecraft group=minecraft
+  with_dict: servers
 
-# - name: Configure Bungee
-#   copy: src=bungeeConfig.yml dest=/srv/minecraft/bungeeCord/config.yml owner=minecraft group=minecraft mode=0644
+- name: Link BungeeCord binary
+  file: src=/srv/minecraft/bin/BungeeCord.jar dest=/srv/minecraft/bungeeCord/bungeeCord.jar state=link owner=minecraft group=minecraft
 
-# - name: Configure servers
-#   template: src=server.properties.j2 dest=/srv/minecraft/backend/{{ item.value.instanceDir }}/server.properties owner=minecraft group=minecraft mode=0644
-#   with_dict: servers
+- name: Configure Bungee
+  copy: src=bungeeConfig.yml dest=/srv/minecraft/bungeeCord/config.yml owner=minecraft group=minecraft mode=0644
 
-# - name: Create start scripts
-#   template: src=start.sh.j2 dest=/srv/minecraft/backend/{{ item.value.instanceDir }}/start.sh owner=minecraft group=minecraft mode=0755
-#   with_dict: servers
+- name: Configure servers
+  template: src=server.properties.j2 dest=/srv/minecraft/backend/{{ item.value.instanceDir }}/server.properties owner=minecraft group=minecraft mode=0644
+  with_dict: servers
 
-# - name: BuneeCord start script
-#   copy: src=bungeeStart.sh dest=/srv/minecraft/bungeeCord/start.sh owner=minecraft group=minecraft mode=0755
+- name: Create start scripts
+  template: src=start.sh.j2 dest=/srv/minecraft/backend/{{ item.value.instanceDir }}/start.sh owner=minecraft group=minecraft mode=0755
+  with_dict: servers
 
-# - name: Set Default Ops
-#   template: src=ops.txt.j2 dest=/srv/minecraft/backend/{{ item.value.instanceDir }}/ops.txt owner=minecraft group=minecraft mode=0644
-#   with_dict: servers
+- name: BuneeCord start script
+  copy: src=bungeeStart.sh dest=/srv/minecraft/bungeeCord/start.sh owner=minecraft group=minecraft mode=0755
+
+- name: Set Default Ops
+  template: src=ops.txt.j2 dest=/srv/minecraft/backend/{{ item.value.instanceDir }}/ops.txt owner=minecraft group=minecraft mode=0644
+  with_dict: servers
