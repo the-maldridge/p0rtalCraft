@@ -1,0 +1,56 @@
+---
+- name: Install build dependencies
+  apt: with={{ item }} state=present install_recommends=no
+  with_items:
+  - openjdk-7-jdk
+  - git
+  - tmux
+
+- name: Install iptables rules
+  copy: src=spigot.rules dest=/etc/iptables.d/spigot.rules owner=root group=root mode=0640
+  notify: iptables
+
+- name: Create the minecraft user
+  user: name=minecraft state=present system=yes
+
+- name: Create the minecraft base directories
+  file: path=/srv/minecraft state=directory owner=minecraft group=minecraft mode=0755
+  file: path=/srv/minecraft/backend state=directory owner=minecraft group=minecraft mode=0755
+  file: path=/srv/minecraft/build state=directory owner=minecraft group=minecraft mode=0755
+
+- name: Create BungeeCord root
+  file: path=/srv/minecraft/bungeeCord/ state=directory owner=minecraft group=minecraft mode=0755
+
+- name: Create bin folder for minecraft assets
+  file: path=/srv/minecraft/bin/ state=directory owner=minecraft group=minecraft mode=0755
+
+- name: Retrieve spigot BuildTools.jar
+  get_url: url=https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar dest=/srv/minecraft/build/BuildTools.jar owner=minecraft group=minecraft mode=0644
+
+- name: Attempt to build the Spigot artifacts
+  command: java -jar BuildTools.jar --rev {{ spigot_version }}
+
+# - name: Link spigot binaries
+#   file: src=/srv/minecraft/bin/spigot.jar dest=/srv/minecraft/backend/{{ item.value.instanceDir  }}/spigot.jar state=link owner=minecraft group=minecraft
+#   with_dict: servers
+
+# - name: Link BungeeCord binary
+#   file: src=/srv/minecraft/bin/BungeeCord.jar dest=/srv/minecraft/bungeeCord/bungeeCord.jar state=link owner=minecraft group=minecraft
+
+# - name: Configure Bungee
+#   copy: src=bungeeConfig.yml dest=/srv/minecraft/bungeeCord/config.yml owner=minecraft group=minecraft mode=0644
+
+# - name: Configure servers
+#   template: src=server.properties.j2 dest=/srv/minecraft/backend/{{ item.value.instanceDir }}/server.properties owner=minecraft group=minecraft mode=0644
+#   with_dict: servers
+
+# - name: Create start scripts
+#   template: src=start.sh.j2 dest=/srv/minecraft/backend/{{ item.value.instanceDir }}/start.sh owner=minecraft group=minecraft mode=0755
+#   with_dict: servers
+
+# - name: BuneeCord start script
+#   copy: src=bungeeStart.sh dest=/srv/minecraft/bungeeCord/start.sh owner=minecraft group=minecraft mode=0755
+
+# - name: Set Default Ops
+#   template: src=ops.txt.j2 dest=/srv/minecraft/backend/{{ item.value.instanceDir }}/ops.txt owner=minecraft group=minecraft mode=0644
+#   with_dict: servers
