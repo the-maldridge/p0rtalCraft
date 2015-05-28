@@ -69,4 +69,7 @@
 - name: BungeeCord start script
   copy: src=bungeeStart.sh dest=/srv/minecraft/bungeeCord/start.sh owner=minecraft group=minecraft mode=0755
 
+- name: Main start script
+  copy: src=allStart.sh dest=/srv/minecraft/start.sh owner=minecraft group=minecraft mode=0755
+
 - include: plugins.yml
