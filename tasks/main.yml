@@ -1,6 +1,6 @@
 ---
 - name: Install build dependencies
-  apt: with={{ item }} state=present install_recommends=no
+  apt: name={{ item }} state=present install_recommends=no
   with_items:
   - openjdk-7-jdk
   - git
@@ -28,7 +28,7 @@
   get_url: url=https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar dest=/srv/minecraft/build/BuildTools.jar owner=minecraft group=minecraft mode=0644
 
 - name: Attempt to build the Spigot artifacts
-  command: java -jar BuildTools.jar --rev {{ spigot_version }}
+  command: java -jar BuildTools.jar --rev {{ spigot_version }} chdir=/srv/minecraft/build
 
 # - name: Link spigot binaries
 #   file: src=/srv/minecraft/bin/spigot.jar dest=/srv/minecraft/backend/{{ item.value.instanceDir  }}/spigot.jar state=link owner=minecraft group=minecraft
