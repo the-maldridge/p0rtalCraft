@@ -13,20 +13,24 @@
 - name: Create the minecraft user
   user: name=minecraft state=present system=yes
 
-- name: Create the minecraft base directories
+- name: Create the minecraft base directory
   file: path=/srv/minecraft state=directory owner=minecraft group=minecraft mode=0755
+
+- name: Create the backend base directory
   file: path=/srv/minecraft/backend state=directory owner=minecraft group=minecraft mode=0755
+
+- name: Create the BungeeCord root
+  file: path=/srv/minecraft/bungeeCord/ state=directory owner=minecraft group=minecraft mode=0755
+
+- name: Create the spigot build root
   file: path=/srv/minecraft/build state=directory owner=minecraft group=minecraft mode=0755
 
-- name: Create BungeeCord root
-  file: path=/srv/minecraft/bungeeCord/ state=directory owner=minecraft group=minecraft mode=0755
+- name: Create the local bin directory
+  file: path=/srv/minecraft/bin/ state=directory owner=minecraft group=minecraft mode=0755
 
 - name: Create the minecraft server folders
   file: path=/srv/minecraft/backend/{{ item.value.instanceDir  }} state=directory owner=minecraft group=minecraft mode=0755
   with_dict: servers
-
-- name: Create bin folder for minecraft assets
-  file: path=/srv/minecraft/bin/ state=directory owner=minecraft group=minecraft mode=0755
 
 - name: Retrieve spigot BuildTools.jar
   get_url: url={{ BuildTools_url }} dest=/srv/minecraft/build/BuildTools.jar owner=minecraft group=minecraft mode=0644
@@ -65,30 +69,4 @@
 - name: BungeeCord start script
   copy: src=bungeeStart.sh dest=/srv/minecraft/bungeeCord/start.sh owner=minecraft group=minecraft mode=0755
 
-- name: Get PermissionsEx
-  get_url: url={{ PermissionsEx_url }} dest=/srv/minecraft/bin/permissionsex.jar owner=minecraft group=minecraft mode=0644
-
-- name: Install PermissionsEx
-  file: path=/srv/minecraft/backend/{{ item.value.instanceDir }}/plugins/PermissionsEx state=directory owner=minecraft group=minecraft mode=0755
-  with_dict: servers
-  file: src=/srv/minecraft/bin/permissionsex.jar dest=/srv/minecraft/backend/{{ item.value.instanceDir }}/plugins/permissionsex.jar state=link
-  with_dict: servers
-
-- name: Get ModifyWorld
-  get_url: url={{ ModifyWorld_url }} dest=/srv/minecraft/bin/modifyworld.jar owner=minecraft group=minecraft mode=0644
-
-- name: Install ModifyWorld
-  file: src=/srv/minecraft/bin/modifyworld.jar dest=/srv/minecraft/backend/{{ item.value.instanceDir }}/plugins/modifyworld.jar state=link
-  with_dict: servers
-
-- name: Create server plugin folders
-  file: path=/srv/minecraft/backend/{{ item.value.instanceDir }}/plugins state=directory owner=minecraft group=minecraft mode=0755
-  with_dict: servers
-
-- name: Create PermissionsEx configuration directory
-  file: path=/srv/minecraft/backend/{{ item.value.instanceDir }}/plugins/PermissionsEx state=directory owner=minecraft group=minecraft mode=0755
-  with_dict: servers
-
-- name: Configure PermissionsEx
-  copy: src=permissions.yml dest=/srv/minecraft/backend/{{ item.value.instanceDir }}/plugins/PermissionsEx/permissions.yml owner=minecraft group=minecraft mode=0644
-  with_dict: servers
+- include: plugins.yml
