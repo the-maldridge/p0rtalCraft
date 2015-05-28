@@ -1,8 +1,5 @@
 #!/bin/sh
-tmux new-session -d -s minecraft
-
-# htop, useful to monitor host
-tmux new-window -t minecraft:0 -n 'htop' 'htop'
+tmux new-session -s minecraft -d 'htop'
 
 # BUNGEECORD ROOT
 echo "Starting Core BungeeCord Services"
