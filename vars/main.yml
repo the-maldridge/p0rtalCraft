@@ -33,7 +33,7 @@ servers:
     instanceQueryEnabled: false
     instancePort: 25571
     instanceSeed: 5116315820322785826
-    instanceGamemode: 1
+    instanceGamemode: 0
     instanceMOTD: Survival
     spawnNPCs: true
     spawnAnimals: true
