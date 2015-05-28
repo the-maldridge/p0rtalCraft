@@ -7,7 +7,7 @@ servers:
   lobby:
     allowEnd: false
     allowNether: false
-    levelName: hub
+    levelName: world
     instanceQueryEnabled: false
     instancePort: 25570
     instanceSeed:
@@ -19,7 +19,6 @@ servers:
     maxPlayers: 15
     pvpEnabled: false
     xrayEnable: false
-    defaultOp: maldridge
     minMemory: 128M
     maxMemory: 256M
     instanceDir: lobby
@@ -38,7 +37,6 @@ servers:
     maxPlayers: 15
     pvpEnabled: true
     xrayEnable: true
-    defaultOp: maldridge
     minMemory: 128M
     maxMemory: 1G
     instanceDir: creative
@@ -57,7 +55,6 @@ servers:
     maxPlayers: 15
     pvpEnabled: false
     xrayEnable: false
-    defaultOp: maldridge
     minMemory: 128M
     maxMemory: 1G
     instanceDir: survival
