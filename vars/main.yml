@@ -26,7 +26,7 @@ servers:
     minMemory: 128M
     maxMemory: 256M
     instanceDir: lobby
-  creative:
+  survival:
     allowEnd: true
     allowNether: true
     levelName: world
@@ -44,7 +44,7 @@ servers:
     minMemory: 128M
     maxMemory: 1G
     instanceDir: creative
-  survival:
+  creative:
     allowEnd: true
     allowNether: true
     levelName: world
