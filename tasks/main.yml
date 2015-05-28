@@ -30,7 +30,7 @@
   file: path=/srv/minecraft/bin/ state=directory owner=minecraft group=minecraft mode=0755
 
 - name: Retrieve spigot BuildTools.jar
-  get_url: url=https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar dest=/srv/minecraft/build/BuildTools.jar owner=minecraft group=minecraft mode=0644
+  get_url: url={{ BuildTools_url }} dest=/srv/minecraft/build/BuildTools.jar owner=minecraft group=minecraft mode=0644
 
 - name: Attempt to build the Spigot artifacts
   command: java -jar BuildTools.jar --rev {{ spigot_version }} chdir=/srv/minecraft/build creates=/srv/minecraft/build/spigot-{{ spigot_version }}.jar
@@ -41,6 +41,9 @@
 - name: Link spigot binaries
   file: src=/srv/minecraft/bin/spigot.jar dest=/srv/minecraft/backend/{{ item.value.instanceDir  }}/spigot.jar state=link owner=minecraft group=minecraft
   with_dict: servers
+
+- name: Obtain BungeeCord binary
+  get_url: url={{ bungeecord_url }} dest=/srv/minecraft/bin/BungeeCord.jar owner=minecraft group=minecraft mode=0644
 
 - name: Link BungeeCord binary
   file: src=/srv/minecraft/bin/BungeeCord.jar dest=/srv/minecraft/bungeeCord/bungeeCord.jar state=link owner=minecraft group=minecraft

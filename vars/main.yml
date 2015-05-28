@@ -1,5 +1,7 @@
 ---
 spigot_version: 1.8.6
+BuildTools_url: http://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+BungeeCord_url: http://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar
 
 servers:
   lobby:
