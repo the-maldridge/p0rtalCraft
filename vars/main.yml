@@ -63,4 +63,5 @@ servers:
     maxMemory: 1G
     instanceDir: creative
 
-- include: secrets.yml
+inspircd_links_minecraft_recvpass: "{{ lookup('file', 'secret/inspircd_links_minecraft_sendpass' }}"
+inspircd_links_minecraft_sendpass: "{{ lookup('file', 'secret/inspircd_links_minecraft_recvpass' }}"
