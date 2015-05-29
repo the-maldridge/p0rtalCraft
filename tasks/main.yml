@@ -77,7 +77,7 @@
   file: path=/srv/minecraft/bungeeCord/plugins/BungeeRelay state=directory owner=minecraft group=minecraft mode=0755
 
 - name: Configure BungeeRelay
-  template: src=bungeerelay.yml dest=/srv/minecraft/bungeeRelay/plugins/BungeeRelay/config.yml owner=root group=minecraft mode=0640
+  template: src=bungeerelay.yml dest=/srv/minecraft/bungeeCord/plugins/BungeeRelay/config.yml owner=root group=minecraft mode=0640
 
 - name: Configure servers
   template: src=server.properties.j2 dest=/srv/minecraft/backend/{{ item.value.instanceDir }}/server.properties owner=minecraft group=minecraft mode=0644
