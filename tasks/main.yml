@@ -67,6 +67,9 @@
 - name: Link BungeeRelay to bin
   file: src=/srv/minecraft/build/BungeeRelay/target/BungeeRelay.jar dest=/srv/minecraft/bin/BungeeRelay.jar state=link
 
+- name: Link BungeeRelay to BungeeCord plugins
+  file: src=/srv/minecraft/bin/BungeeRelay.jar dest=/srv/minecraft/bungeeCord/plugins/BungeeRelay.jar state=link
+
 - name: Configure Bungee
   copy: src=bungeeConfig.yml dest=/srv/minecraft/bungeeCord/config.yml owner=minecraft group=minecraft mode=0644
 
