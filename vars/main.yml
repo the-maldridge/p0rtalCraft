@@ -62,3 +62,5 @@ servers:
     minMemory: 128M
     maxMemory: 1G
     instanceDir: creative
+
+- include: secrets.yml
