@@ -1,8 +1,12 @@
 ---
+- name: Add java 8 PPA
+  apt_repository: repo='ppa:webupd8team/java'
+
 - name: Install build dependencies
   apt: name={{ item }} state=present install_recommends=no
   with_items:
-  - openjdk-7-jdk
+  - oracle-java8-installer
+  - oracle-java8-set-default
   - git
   - tmux
 
