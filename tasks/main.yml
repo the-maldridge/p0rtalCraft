@@ -29,7 +29,7 @@
 - name: Create the spigot build root
   file: path=/srv/minecraft/build/spigot state=directory owner=minecraft group=minecraft mode=0755
 
-- name; Create the BungeeRelay build root
+- name: Create the BungeeRelay build root
   file: path=/srv/minecraft/build/BungeeRelay state=directory owner=minecraft group=minecraft mode=0755
 
 - name: Create the local bin directory
