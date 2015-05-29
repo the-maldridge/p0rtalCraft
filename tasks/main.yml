@@ -3,6 +3,7 @@
   apt: name={{ item }} state=present install_recommends=no
   with_items:
   - openjdk-7-jdk
+  - maven
   - git
   - tmux
 
