@@ -13,7 +13,7 @@
   with_dict: servers
 
 - name: Configure PermissionsEx
-  copy: src=permissions.yml dest=/srv/minecraft/backend/{{ item.value.instanceDir }}/plugins/PermissionsEx/permissions.yml owner=minecraft group=minecraft mode=0644
+  copy: src=permissions.yml dest=/srv/minecraft/backend/{{ item.value.instanceDir }}/plugins/PermissionsEx/permissions.yml force=no owner=minecraft group=minecraft mode=0644
   with_dict: servers
 
 - name: Get ModifyWorld
