@@ -7,6 +7,8 @@ ModifyWorld_url: http://dev.bukkit.org/media/files/730/259/Modifyworld.jar
 Essentials_url: https://hub.spigotmc.org/jenkins/job/Spigot-Essentials/lastSuccessfulBuild/artifact/Essentials/target/Essentials-2.x-SNAPSHOT.jar
 EssentialsSpawn_url: https://hub.spigotmc.org/jenkins/job/Spigot-Essentials/lastSuccessfulBuild/artifact/EssentialsSpawn/target/EssentialsSpawn-2.x-SNAPSHOT.jar
 WorldEdit_url: http://dev.bukkit.org/media/files/880/435/worldedit-bukkit-6.1.jar
+
+motd: "Minecraft Server"
 servers:
   lobby:
     allowEnd: false

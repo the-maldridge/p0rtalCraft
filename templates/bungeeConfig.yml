@@ -26,7 +26,7 @@ listeners:
     minecraft.collegiumv.org: lobby
   tab_size: 60
   force_default_server: false
-  motd: 'The CV Voxel based clubhouse'
+  motd: {{ motd }}
   query_enabled: false
   query_port: 25577
 timeout: 30000
@@ -35,7 +35,7 @@ servers:
   lobby:
     address: localhost:25570
     restricted: false
-    motd: 'Lobby Server'
+    motd: {{ motd }}
   survival:
     address: localhost:25571
     restricted: false

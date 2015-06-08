@@ -71,7 +71,7 @@
   file: src=/srv/minecraft/bin/BungeeRelay.jar dest=/srv/minecraft/bungeeCord/plugins/BungeeRelay.jar state=link
 
 - name: Configure Bungee
-  copy: src=bungeeConfig.yml dest=/srv/minecraft/bungeeCord/config.yml owner=minecraft group=minecraft mode=0644
+  template: src=bungeeConfig.yml dest=/srv/minecraft/bungeeCord/config.yml owner=minecraft group=minecraft mode=0644
 
 - name: Create BungeeCord plugins folder
   file: path=/srv/minecraft/bungeeCord/plugins state=directory owner=minecraft group=minecraft mode=0755
