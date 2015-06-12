@@ -9,6 +9,8 @@ EssentialsSpawn_url: https://hub.spigotmc.org/jenkins/job/Spigot-Essentials/last
 WorldEdit_url: http://dev.bukkit.org/media/files/880/435/worldedit-bukkit-6.1.jar
 
 motd: "Now you're crafting with portsl!"
+serverSubDir: p0rtalCraft
+
 servers:
   lobby:
     allowEnd: false
