@@ -3,8 +3,6 @@
   get_url: url={{ PermissionsEx_url }} dest=/srv/minecraft/{{ serverSubDir }}/bin/permissionsex.jar owner=minecraft group=minecraft mode=0644
 
 - name: Install PermissionsEx
-  file: path=/srv/minecraft/{{ serverSubDir }}/backend/{{ item.value.instanceDir }}/plugins/PermissionsEx state=directory owner=minecraft group=minecraft mode=0755
-  with_dict: servers
   file: src=/srv/minecraft/{{ serverSubDir }}/bin/permissionsex.jar dest=/srv/minecraft/{{ serverSubDir }}/backend/{{ item.value.instanceDir }}/plugins/permissionsex.jar state=link
   with_dict: servers
 
