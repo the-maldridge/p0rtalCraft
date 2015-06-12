@@ -9,6 +9,8 @@ EssentialsSpawn_url: https://hub.spigotmc.org/jenkins/job/Spigot-Essentials/last
 WorldEdit_url: http://dev.bukkit.org/media/files/880/435/worldedit-bukkit-6.1.jar
 
 motd: "Minecraft Server"
+serverSubDir: 
+
 servers:
   lobby:
     allowEnd: false
