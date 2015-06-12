@@ -23,7 +23,7 @@ listeners:
   tab_list: GLOBAL_PING
   default_server: lobby
   forced_hosts:
-    minecraft.collegiumv.org: lobby
+    minecraft.michaelwashere.net: lobby
   tab_size: 60
   force_default_server: false
   motd: {{ motd }}
@@ -40,9 +40,9 @@ servers:
     address: localhost:25571
     restricted: false
     motd: 'Survival, Can you do it'
-  creative:
+  cakeIsSatan:
     address: localhost:25572
     restricted: false
-    motd: 'Be Creative'
+    motd: 'Authorized only'
 ip_forward: false
 online_mode: true
