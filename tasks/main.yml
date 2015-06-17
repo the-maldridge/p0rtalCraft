@@ -98,6 +98,7 @@
   copy: src=bungeeStart.sh dest=/srv/minecraft/{{ serverSubDir }}/bungeeCord/start.sh owner=minecraft group=minecraft mode=0755
 
 - name: Main start script
-  copy: src=allStart.sh dest=/srv/minecraft/{{ serverSubDir }}/start.sh owner=minecraft group=minecraft mode=0755
+  template: src=allStart.sh dest=/srv/minecraft/{{ serverSubDir }}/start.sh owner=minecraft group=minecraft mode=0755
+  with_dict: servers
 
 - include: plugins.yml

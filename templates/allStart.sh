@@ -11,13 +11,11 @@ echo "Starting Core BungeeCord Lobby"
 tmux new-window -t minecraft:2 -n 'BungeeCordLobby' 'cd backend/lobby; ./start.sh; bash'
 
 # BUNGEECORD BACKENDS
-# survival
-echo "Starting Survival"
-tmux new-window -t minecraft:3 -n 'Survival' 'cd backend/survival; ./start.sh; bash'
+{% for server in servers %}
 
-# creative
-echo "Starting Creative"
-tmux new-window -t minecraft:4 -n 'Creative' 'cd backend/creative; ./start.sh; bash'
+# {{ server.instanceDir }}
+echo "Starting {{ server.instanceDir }}"
+tmux new-window -t minecraft -n '{{ server.instanceDir }}' 'cd backend/{{ server.instanceDir }}; ./start.sh; bash'
 
 # LAUNCH COMPLETE
 # attatch to the bungeecord session
