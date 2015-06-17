@@ -99,6 +99,5 @@
 
 - name: Main start script
   template: src=allStart.sh dest=/srv/minecraft/{{ serverSubDir }}/start.sh owner=minecraft group=minecraft mode=0755
-  with_dict: servers
 
 - include: plugins.yml

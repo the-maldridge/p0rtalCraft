@@ -6,17 +6,13 @@ echo "Starting Core BungeeCord Services"
 # start the bungeecord core server
 tmux new-window -t minecraft:1 -n 'BungeeCord' 'cd bungeeCord; ./start.sh; bash'
 
-# lobby
-echo "Starting Core BungeeCord Lobby"
-tmux new-window -t minecraft:2 -n 'BungeeCordLobby' 'cd backend/lobby; ./start.sh; bash'
-
 # BUNGEECORD BACKENDS
 {% for server in servers %}
+# {{ servers[server].instanceDir }}
+echo "Starting {{ servers[server].instanceDir }}"
+tmux new-window -t minecraft -n '{{ servers[server].instanceDir }}' 'cd backend/{{ servers[server].instanceDir }}; ./start.sh; bash'
 
-# {{ server.instanceDir }}
-echo "Starting {{ server.instanceDir }}"
-tmux new-window -t minecraft -n '{{ server.instanceDir }}' 'cd backend/{{ server.instanceDir }}; ./start.sh; bash'
-
+{% endfor %}
 # LAUNCH COMPLETE
 # attatch to the bungeecord session
 echo "Startup complete, connecting to BungeeCord Root"
