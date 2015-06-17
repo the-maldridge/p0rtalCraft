@@ -14,14 +14,14 @@
 server:
   # The address the plugin needs to connect to.
   # Put in 127.0.0.1 if the IRC is on the same box.
-  host: "192.168.42.7"
+  host: "{{ irc_host }}"
 
   # The port the plugin needs to connect to.
   # The "port" in your link block.
-  port: 7700
+  port: {{ irc_port }}
 
   # The "name" in your link block.
-  servername: "minecraft.collegiumv.org"
+  servername: "{{ irc_servername }}"
 
   # The friendly name for this server. It can be whatever you please.
   realname: "BungeeCord relay from minecraft"

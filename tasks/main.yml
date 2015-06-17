@@ -79,6 +79,9 @@
 - name: Link BungeeRelay to BungeeCord plugins
   file: src=/srv/minecraft/{{ serverSubDir }}/bin/BungeeRelay.jar dest=/srv/minecraft/{{ serverSubDir }}/bungeeCord/plugins/BungeeRelay.jar state=link
 
+- name: Load BungeeRelay config data
+  include_vars: irc.yml
+
 - name: Configure BungeeRelay
   template: src=bungeerelay.yml dest=/srv/minecraft/{{ serverSubDir }}/bungeeCord/plugins/BungeeRelay/config.yml owner=root group=minecraft mode=0640
 
