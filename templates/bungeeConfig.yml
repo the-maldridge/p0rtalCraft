@@ -32,17 +32,11 @@ listeners:
 timeout: 30000
 connection_throttle: 4000
 servers:
-  lobby:
-    address: localhost:25570
+{% for server in servers %}
+  {{ servers[server].instanceDir }}:
+    address: 127.0.1.1:{{ servers[server].instancePort }}
     restricted: false
-    motd: {{ motd }}
-  survival:
-    address: localhost:25571
-    restricted: false
-    motd: 'Survival, Can you do it'
-  cakeIsSatan:
-    address: localhost:25572
-    restricted: false
-    motd: 'Authorized only'
+    motd: {{ servers[server].instanceMOTD }}
+{% endfor %}
 ip_forward: false
 online_mode: true
