@@ -8,7 +8,7 @@ Essentials_url: https://hub.spigotmc.org/jenkins/job/Spigot-Essentials/lastSucce
 EssentialsSpawn_url: https://hub.spigotmc.org/jenkins/job/Spigot-Essentials/lastSuccessfulBuild/artifact/EssentialsSpawn/target/EssentialsSpawn-2.x-SNAPSHOT.jar
 WorldEdit_url: http://dev.bukkit.org/media/files/880/435/worldedit-bukkit-6.1.jar
 
-motd: "Now you're crafting with portsl!"
+motd: "Now you are crafting with portsl!"
 serverSubDir: p0rtalCraft
 
 servers:
@@ -56,7 +56,7 @@ servers:
     instancePort: 25572
     instanceSeed: 0
     instanceGamemode: 0
-    instanceMOTD: Survival
+    instanceMOTD: Closed World
     spawnNPCs: true
     spawnAnimals: true
     spawnMonsters: true
