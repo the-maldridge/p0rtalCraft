@@ -28,10 +28,10 @@ server:
 
   # The password the plugin expects to receive.
   # The "sendpass" in your link block.
-  recvpass: {{ inspircd_links_minecraft_recvpass | replace(':', '') }}
+  recvpass: {{ inspircd_links_minecraft_recvpass | hash('sha1') }}
   # The password the plugin will send to the server.
   # The "recvpass" in your link block.
-  sendpass: {{ inspircd_links_minecraft_sendpass | replace(':', '') }}
+  sendpass: {{ inspircd_links_minecraft_sendpass | hash('sha1') }}
 
   # The length of time to wait before automatically reconnecting, should connection to the
   # IRC server be lost. The time is in milliseconds. Set to -1 for no reconnect attempt.
