@@ -66,6 +66,24 @@ servers:
     minMemory: 128M
     maxMemory: 1G
     instanceDir: cakeIsSatan
+  pillow:
+    allowEnd: false
+    allowNether: false
+    levelName: pillow
+    instanceQueryEnabled: false
+    instancePort: 25573
+    instanceSeed:
+    instanceGamemode: 2
+    instanceMOTD: Hub
+    spawnNPCs: false
+    spawnAnimals: false
+    spawnMonsters: false
+    maxPlayers: 15
+    pvpEnabled: false
+    xrayEnable: false
+    minMemory: 1G
+    maxMemory: 2G
+    instanceDir: pillow
 
 inspircd_links_minecraft_recvpass: "{{ lookup('file', 'secret/inspircd_links_minecraft_sendpass') }}"
 inspircd_links_minecraft_sendpass: "{{ lookup('file', 'secret/inspircd_links_minecraft_recvpass') }}"
